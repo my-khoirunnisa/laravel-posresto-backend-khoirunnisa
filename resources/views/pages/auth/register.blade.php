@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'Register Resto')
+@section('title', 'Register CBT')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -50,10 +50,10 @@
                 <div class="form-group">
                     <label for="password" class="d-block">Password</label>
                     <input id="password" type="password"
-                        class="form-control pwstrength
-                        @error('password')
+                        class="form-control pwstrength @error('password')
                         is-invalid
-                        @enderror"
+
+                    @enderror"
                         data-indicator="pwindicator" name="password">
                     @error('password')
                         <div class="invalid-feedback">
@@ -78,9 +78,6 @@
                         {{ $message }}
                     </div>
                 @enderror
-
-
-
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block">

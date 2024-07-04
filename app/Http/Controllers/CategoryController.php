@@ -2,79 +2,92 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    public function index() {
+    //index
+    public function index()
+    {
         $categories = Category::paginate(10);
         return view('pages.categories.index', compact('categories'));
     }
 
-    public function create() {
-        $categories = DB::table('categories')->get();
-        return view('pages.categories.create', compact('categories'));
+    //create
+    public function create()
+    {
+        return view('pages.categories.create');
     }
 
-    public function store(Request $request) {
+    //store
+    public function store(Request $request)
+    {
+        //validate the request...
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
-            // 'image' => 'required|images|mimes:png,jpg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $categories = new Category;
-        $categories->name = $request->name;
-        $categories->description = $request->description;
-        $categories->save();
+        //store the request...
+        $category = new Category;
+        $category->name = $request->name;
+        $category->description = $request->description;
 
-        // save image
+        //save image
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $image->storeAs('public/categories', $categories->id . '.' . $image->getClientOriginalExtension());
-            $categories->image = 'storage/categories/' . $categories->id . '.' . $image->getClientOriginalExtension();
-            $categories->save();
+            $image->storeAs('public/categories', $category->id . '.' . $image->getClientOriginalExtension());
+            $category->image = 'storage/categories/' . $category->id . '.' . $image->getClientOriginalExtension();
+            $category->save();
         }
 
         return redirect()->route('categories.index')->with('success', 'Category created successfully');
     }
 
-    public function show($id) {
+    //show
+    public function show($id)
+    {
         return view('pages.categories.show');
     }
 
-    public function edit($id) {
-        $category = Category::findOrFail($id);
+    //edit
+    public function edit($id)
+    {
+        $category = Category::find($id);
         return view('pages.categories.edit', compact('category'));
     }
 
-    public function update(Request $request, $id) {
+    //update
+    public function update(Request $request, $id)
+    {
+        //validate the request...
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
-            // 'image' => 'required|images|mimes:png,jpg|max:2048',
+            // 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $categories = Category::find($id);
-        $categories->name = $request->name;
-        $categories->description = $request->description;
-        $categories->save();
+        //update the request...
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->description = $request->description;
 
-        // save image
+        //save image
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $image->storeAs('public/categories', $categories->id . '.' . $image->getClientOriginalExtension());
-            $categories->image = 'storage/categories/' . $categories->id . '.' . $image->getClientOriginalExtension();
-            $categories->save();
+            $image->storeAs('public/categories', $category->id . '.' . $image->getClientOriginalExtension());
+            $category->image = 'storage/categories/' . $category->id . '.' . $image->getClientOriginalExtension();
+            $category->save();
         }
 
         return redirect()->route('categories.index')->with('success', 'Category updated successfully');
     }
 
-    public function destroy($id) {
-        $category = Category::findOrFail($id);
+    //destroy
+    public function destroy($id)
+    {
+        //delete the request...
+        $category = Category::find($id);
         $category->delete();
         return redirect()->route('categories.index')->with('success', 'Category deleted successfully');
     }

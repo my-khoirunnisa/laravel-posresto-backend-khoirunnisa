@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained('categories');
             $table->string('name');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->decimal('price', 10, 2);
             $table->integer('stock');
             $table->boolean('status')->default(1);
+            //is_favorite
             $table->boolean('is_favorite')->default(0);
             $table->timestamps();
         });
