@@ -12,15 +12,23 @@
                 <a href="#"
                     class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                 <ul class="dropdown-menu">
-                    <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
+                    <li class='{{ Request::is('dashboard') ? 'active' : '' }}'>
                         <a class="nav-link"
-                            href="{{ url('dashboard-general-dashboard') }}">General Dashboard</a>
-                    </li>
-                    <li class=''>
-                        <a class="nav-link"
-                            href="{{ route('users.index') }}">User</a>
+                            href="{{ url('dashboard') }}">General Dashboard</a>
                     </li>
                 </ul>
+            </li>
+            <li class="nav-item">
+                <a
+                    class="nav-link" href="{{ route('users.index') }}"><i class="fas fa-fire"></i><span>Users</span></a>
+            </li>
+            <li class="nav-item">
+                <a
+                    class="nav-link" href="{{ route('products.index') }}"><i class="fas fa-fire"></i><span>Products</span></a>
+            </li>
+            <li class="nav-item">
+                <a
+                    class="nav-link" href="{{ route('categories.index') }}"><i class="fas fa-fire"></i><span>Categories</span></a>
             </li>
         </ul>
     </aside>
