@@ -7,7 +7,6 @@
             <a href="index.html">RB</a>
         </div>
         <ul class="sidebar-menu">
-
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                 <ul class="dropdown-menu">
