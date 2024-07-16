@@ -1,10 +1,10 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">RESTO BAHRI</a>
+            <a href="index.html">NISA RESTO</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">RB</a>
+            <a href="index.html">NR</a>
         </div>
         <ul class="sidebar-menu">
             <li class="nav-item dropdown">
